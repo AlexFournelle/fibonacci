@@ -14,9 +14,7 @@ func main() {
 	var limit int
 	fmt.Println("FIBONACCI SEQUENCE")
 
-	fmt.Printf("Debug: limit: %d\n", limit)
 	limit = readInt("How long should the series be?", limit)
-	fmt.Printf("Debug: limit: %d\n", limit)
 
 	var seq []int
 	for i := 0; i < limit; i++ {
@@ -43,11 +41,10 @@ func fibo(i int) int {
 func readInt(msg string, i int) int {
 	fmt.Println(msg)
 	fmt.Print("(enter an integer between 1-49) :")
-	num, err := fmt.Scanf("%d", &i)
+	_, err := fmt.Scanf("%d", &i)
 	if err != nil || i > 49 {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	fmt.Printf("Debug: items: %d, var i: %d\n", num, i)
 	return i
 }
