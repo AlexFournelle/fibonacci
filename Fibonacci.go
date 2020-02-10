@@ -46,15 +46,10 @@ func Fibonacci(n int) int {
 func genererSequenceBoucle(lim int) []int {
 	defer chrono("Génération par boucle")()
 	var res []int
-	if lim <= 1 {
-		res = append(res, lim)
-		return res
-	}
-	n1, n2 := 1, 0
+	res = append(res, 0, 1)
 	for i := 2; i < lim; i++ {
-		n2, n1 = n1, n1+n2
+		res = append(res, res[i-1]+res[i-2])
 	}
-	res = append(res, n2+n1)
 	return res
 }
 
@@ -64,7 +59,7 @@ func readInt(msg string, i int) int {
 	fmt.Println(msg)
 	fmt.Print("(Entrez un entier de 1-50 - Attention: ça pourrait être long!) :")
 	_, err := fmt.Scanf("%d", &i)
-	if err != nil || i > 50 {
+	if err != nil || i > 50 || i < 1 {
 		fmt.Println(err)
 		os.Exit(1)
 	}
