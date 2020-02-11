@@ -24,22 +24,21 @@ func main() {
 	fmt.Println(sequence)
 }
 
-// Première méthode, utilisant une fonction récursive (Fibonacci())
+// Première méthode, utilisant une fonction récursive f()
 func genererSequenceRecursive(lim int) []int {
 	defer chrono("Génération par récursion")()
 	var res []int
+	var f func(n int) int
+	f = func(n int) int {
+		if n <= 1 {
+			return int(n)
+		}
+		return f(n-1) + f(n-2)
+	}
 	for i := 0; i < lim; i++ {
-		res = append(res, Fibonacci(i))
+		res = append(res, f(i))
 	}
 	return res
-}
-
-// Génère le nombre n de la séquence de Fibonacci de façon récursive
-func Fibonacci(n int) int {
-	if n <= 1 {
-		return int(n)
-	}
-	return Fibonacci(n-1) + Fibonacci(n-2)
 }
 
 // Deuxième méthode, utilisant une boucle
